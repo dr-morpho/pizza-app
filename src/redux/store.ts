@@ -24,6 +24,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['pizzaSlice'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
