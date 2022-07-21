@@ -8,9 +8,18 @@ import deleteImg from '../../assets/img/delete.svg';
 
 const Search: React.FC = () => {
   const [localValue, setLocalValue] = React.useState('');
-  const dispatch = useDispatch();
-  // Use Ref:
   const inputRef = React.useRef<HTMLInputElement>(null!);
+  const dispatch = useDispatch();
+ 
+  React.useEffect(() => {
+    const data = window.localStorage.getItem('LOCAL_VALUE');
+    setLocalValue(JSON.parse(data!));
+  }, []);
+
+  React.useEffect(() => {
+    window.localStorage.setItem('LOCAL_VALUE', JSON.stringify(localValue));
+  }, [localValue]);
+  
   const onClickClear = () => {
     setLocalValue('');
     setSearch('');
